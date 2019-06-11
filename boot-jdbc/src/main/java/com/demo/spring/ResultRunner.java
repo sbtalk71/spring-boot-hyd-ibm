@@ -31,9 +31,26 @@ public class ResultRunner implements CommandLineRunner {
 		
 	});
 	
-	for(Emp e: empList) {
+	/*for(Emp e: empList) {
 		System.out.println(e.getEmpId()+" "+e.getName());
-	}
+	}*/
+	
+	empList.stream().forEach(e->System.out.println(e.getEmpId()+" "+e.getName()));
+	
+	
+	Emp e=jt.queryForObject("select * from emp where empno=104", new RowMapper<Emp>() {
+
+		@Override
+		public Emp mapRow(ResultSet rs, int rowNum) throws SQLException {
+			
+			return new Emp(rs.getInt("EMPNO"), rs.getString("NAME"), rs.getString("ADDRESS"),
+					rs.getDouble("SALARY"));
+		}
+		
+	});
+	
+	System.out.println(e.getEmpId()+" "+e.getName());
+	
 	}
 
 }
