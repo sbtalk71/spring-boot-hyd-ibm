@@ -1,5 +1,6 @@
 package com.demo.spring.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class EmpRestController {
 			produces=MediaType.APPLICATION_JSON_VALUE)*/
 	
 	@GetMapping(path="/emp/find",
-	produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	produces= {MediaType.APPLICATION_JSON_VALUE,"application/xml"})
 	public ResponseEntity findEmp(@RequestParam("id")int id) {
 		
 		Optional<Emp> o=repo.findById(id);
@@ -68,6 +69,11 @@ public class EmpRestController {
 		}else {
 			return ResponseEntity.ok("Employee Does not exist");
 		}
+	}
+	
+	@GetMapping(path="/emp",produces="application/json")
+	public ResponseEntity<List<Emp>> getAll(){
+		return ResponseEntity.ok(repo.findAll());
 	}
 
 }
