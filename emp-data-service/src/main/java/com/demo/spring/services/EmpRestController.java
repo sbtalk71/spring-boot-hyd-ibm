@@ -5,8 +5,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,6 +50,24 @@ public class EmpRestController {
 			return ResponseEntity.ok("Employee saved successfully..");
 		}
 	}
+	@PutMapping(path="/emp/update",
+			consumes=MediaType.APPLICATION_JSON_VALUE,
+			produces=MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity updateEmp(@RequestBody Emp e) {
+		repo.save(e);
+		return ResponseEntity.ok("Employee updated successfully..");
+	}
 	
+	@DeleteMapping(path="/emp/delete",
+						produces=MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity deleteEmp(@RequestParam("id")int id) {
+		
+		if(repo.existsById(id)) {
+			repo.deleteById(id);
+			return ResponseEntity.ok("Employee deleted successfully..");
+		}else {
+			return ResponseEntity.ok("Employee Does not exist");
+		}
+	}
 
 }
