@@ -27,6 +27,7 @@ public class HrController {
 				String.class);
 		return response;
 	}
+	
 
 	@GetMapping(path = "/hr/list", produces = "application/json")
 	public ResponseEntity<String> listAllEmps() {
