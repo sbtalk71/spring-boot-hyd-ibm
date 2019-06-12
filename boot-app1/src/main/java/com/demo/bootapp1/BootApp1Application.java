@@ -1,14 +1,14 @@
-package com.demo.spring;
+package com.demo.bootapp1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestClientsApplication {
+public class BootApp1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestClientsApplication.class, args);
-	System.out.println("test");
+		SpringApplication.run(BootApp1Application.class, args);
+		
 	}
 
 }

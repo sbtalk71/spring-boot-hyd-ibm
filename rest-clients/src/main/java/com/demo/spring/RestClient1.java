@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.demo.spring.entity.Emp;
 
-@Component
+//@Component
 public class RestClient1 implements CommandLineRunner {
 
 	@Override

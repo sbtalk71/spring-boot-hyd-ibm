@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: shantanu
+Build-Jdk: 10.0.2
+Implementation-Title: boot-app1
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.demo
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/boot-app1
+Created-By: Maven Integration for Eclipse
+
