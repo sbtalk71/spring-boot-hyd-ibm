@@ -23,7 +23,7 @@ public class HrController {
 
 		HttpEntity entity = new HttpEntity<>(headers);
 
-		ResponseEntity<String> response = rt.exchange("http://localhost:8081/emp/find?id="+empid, HttpMethod.GET, entity,
+		ResponseEntity<String> response = rt.exchange("http://emp-service/emp/find?id="+empid, HttpMethod.GET, entity,
 				String.class);
 		return response;
 	}
@@ -35,7 +35,7 @@ public class HrController {
 
 		HttpEntity entity = new HttpEntity<>(headers);
 
-		ResponseEntity<String> response = rt.exchange("http://localhost:8081/emp", HttpMethod.GET, entity,String.class);
+		ResponseEntity<String> response = rt.exchange("http://emp-service/emp", HttpMethod.GET, entity,String.class);
 		return response;
 	}
 }
