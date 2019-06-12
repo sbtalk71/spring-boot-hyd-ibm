@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 @RestController
 public class HrController {
 
@@ -17,6 +19,7 @@ public class HrController {
 	private RestTemplate rt;
 
 	@GetMapping(path = "/hr/get/{id}", produces = "application/json")
+	@HystrixCommand(fallbackMethod="fallback1")
 	public ResponseEntity<String> getEmpDetails(@PathVariable("id")int empid) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Accept", "application/json");
@@ -39,5 +42,12 @@ public class HrController {
 
 		ResponseEntity<String> response = rt.exchange("http://emp-service/emp", HttpMethod.GET, entity,String.class);
 		return response;
+	}
+	
+	
+	//fallbacks
+	
+	public ResponseEntity<String> fallback1(int empid) {
+		return ResponseEntity.ok("Emp Details Service is down, try after sometime");
 	}
 }
