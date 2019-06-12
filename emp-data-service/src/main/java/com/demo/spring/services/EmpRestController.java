@@ -3,6 +3,8 @@ package com.demo.spring.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +31,8 @@ public class EmpRestController {
 	
 	@GetMapping(path="/emp/find",
 	produces= {MediaType.APPLICATION_JSON_VALUE,"application/xml"})
-	public ResponseEntity findEmp(@RequestParam("id")int id) {
-		
+	public ResponseEntity findEmp(@RequestParam("id")int id,ServletRequest req) {
+		System.out.println("::::::::"+req.getRemoteHost()+":"+req.getLocalPort()+"::::::::::::");
 		Optional<Emp> o=repo.findById(id);
 		if(o.isPresent()) {
 			return ResponseEntity.ok(o.get());
@@ -72,7 +74,8 @@ public class EmpRestController {
 	}
 	
 	@GetMapping(path="/emp",produces="application/json")
-	public ResponseEntity<List<Emp>> getAll(){
+	public ResponseEntity<List<Emp>> getAll(ServletRequest req){
+		System.out.println("::::::::"+req.getRemoteHost()+":"+req.getLocalPort()+"::::::::::::");
 		return ResponseEntity.ok(repo.findAll());
 	}
 
